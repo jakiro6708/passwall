@@ -1,89 +1,115 @@
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=kenzok8&show_icons=true&theme=radical)
 <div align="center">
-<h1 align="center"openwrt-packages</h1>
-<img src="https://img.shields.io/github/issues/kenzok8/openwrt-packages?color=green">
-<img src="https://img.shields.io/github/stars/kenzok8/openwrt-packages?color=yellow">
-<img src="https://img.shields.io/github/forks/kenzok8/openwrt-packages?color=orange">
-<img src="https://img.shields.io/github/license/kenzok8/openwrt-packages?color=ff69b4">
-<img src="https://img.shields.io/github/languages/code-size/kenzok8/openwrt-packages?color=blueviolet">
+  <img src="https://raw.githubusercontent.com/jerrykuku/staff/master/helloworld-logo1.png" width="500px"  >
+  <h1 align="center">
+    An OpenWrt Internet surfing plug-in
+  </h1>
+    <h3 align="center">
+    HelloWorld是一个以用户最佳主观体验为导向的插件，它支持多种主流协议和多种自定义视频分流服务，拥有精美的操作界面，并配上直观的节点信息。<br><br>
+  </h3>
+
+  <a href="/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="">
+  </a>
+
+  <a href="https://github.com/jerrykuku/luci-app-vssr/pulls">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="">
+  </a>
+
+  <a href="https://github.com/jerrykuku/luci-app-vssr/issues/new">
+    <img src="https://img.shields.io/badge/Issues-welcome-brightgreen.svg">
+  </a>
+
+  <a href="https://github.com/jerrykuku/luci-app-vssr/releases">
+    <img src="https://img.shields.io/badge/release-v1.25-blue.svg?">
+  </a>
+
+  <a href="https://github.com/jerrykuku/luci-app-vssr/releases">
+    <img src="https://img.shields.io/github/downloads/jerrykuku/luci-app-vssr/total">
+  </a>
+
+  <a href="https://t.me/PIN1Group">
+    <img src="https://img.shields.io/badge/Contact-telegram-blue">
+  </a>
 </div>
 
-<img src="https://v2.jinrishici.com/one.svg?font-size=24&spacing=2&color=Black">
-
-#### 说明 
-
-<br>中文 | [English](README_en.md)
-
-* 喜欢追新的可以去下载small-package，该仓库每天自动同步更新
-
-* [small-package仓库地址](https://github.com/kenzok8/small-package) 
-
-* 软件不定期同步大神库更新，适合一键下载用于openwrt编译
+<b><br>支持全部类型的节点分流</b>  
+目前只适配最新版 argon主题 （其他主题下应该也可以用 但显示应该不会很完美）  
+目前Lean最新版本的openwrt 已经可以直接拉取源码到 package/lean 下直接进行勾选并编译。  
 
 
-##### 插件每日更新下载:
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/kenzok8/compile-package?style=for-the-badge&label=插件更新下载)](https://github.com/kenzok8/compile-package/releases/latest)
+### 更新日志 2022-04-23  v1.25
+- UPDATE: 适配19.07 LuCI。
+- FIX: 继续优化订阅节点时旗帜匹配的准确性。
+- FIX: 优化了一些block的间距问题，同时优化了暗黑模式下的颜色显示【最好搭配最新版argon主题】。
 
-+ [passwall依赖](https://github.com/kenzok8/small)
 
-+ [xiaorouji仓库](https://github.com/xiaorouji/openwrt-passwall)
+详情见[具体日志](./relnotes.txt)。 
 
-+ 谢谢 **kiddin9珠玉在前**[openwrt固件与插件下载](https://op.dllkids.xyz/op/firmware/)
+### 插件介绍
 
-#### 使用
-一键命令
-```yaml
-sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-git pull
-./scripts/feeds update -a
-./scripts/feeds install -a
+1. 基于 Lean ssrp 全新MOD的 Hello World ,在原插件的基础上做了一些优化用户操作体验的修改，感谢插件原作者所做出的的努力和贡献！ 
+1. 节点列表支持国旗显示并且页面打开自动检测节点的连接时间。  
+1. 支持各种分流组合，并且可以自己编辑所有分流的域名，相当于七组自定义分流。  
+1. 将节点订阅转移至[高级设置]请悉知。  
+1. 底部状态栏：左边显示国旗地区以及IP,右边为四个站点的可访问状态，彩色为可访问，灰色为不能访问。 
+1. 优化了国旗匹配方法。  
+1. 建议搭配Argon主题，以达到最佳的显示效果。  
+
+欢迎提交bug。
+
+### 如何编译
+假设你的Lean openwrt（最新版本19.07） 在 lede 目录下
+```
+cd lede/package/lean/  
+
+git clone https://github.com/jerrykuku/lua-maxminddb.git  #git lua-maxminddb 依赖
+
+git clone https://github.com/jerrykuku/luci-app-vssr.git  
+
 make menuconfig
+
+make -j1 V=s
 ```
 
-- openwrt 固件编译自定义主题与软件
+### 问题解决
 
-| 软件名                       | 说明                   | 中文说明    |
-| -----------------------------|------------------------| ------------|
-| luci-app-vssr                | vssr proxy                 | vssr老竭力代理软件        |
-| luci-app-dnsfilter           | dns ad filtering            | 基于DNS的广告过滤        |
-| luci-app-openclash           | openclash proxy            |  clash的图形代理软件      |
-| luci-app-advanced            | System advanced settings               | 系统高级设置        |
-| luci-app-pushbot             | WeChat/DingTalk Pushed plugins    |   微信/钉钉推送        |
-| luci-theme-atmaterial_new    | atmaterial theme (adapted to luci-18.06) | Atmaterial 三合一主题        |
-| luci-app-aliddns             | aliyunddns         |   阿里云ddns插件      |
-| luci-app-eqos                | Speed ​​limit by IP address       | 依IP地址限速      |
-| luci-app-gost                | https proxy      | 隐蔽的https代理   |
-| luci-app-adguardhome         | Block ads          |  AdG去广告      |
-| luci-app-smartdns            | smartdns dns pollution prevention     |  smartdns DNS防污染       |
-| luci-app-passwall            | passwall proxy      | passwall代理软件        |
-| luci-theme-argonne           | argonne theme           | 修改老竭力主题名     |
-| luci-app-argonne-config      | argonne theme settings            |  argonne主题设置      |
-| luci-app-ssr-plus            | ssr-plus proxy              | ssr-plus 代理软件       |
-| luci-theme-mcat              | Modify topic name          |   mcat主题        |
-| luci-theme-tomato            | Modify topic name             |  tomato主题        |
-| luci-theme-neobird           | neobird theme          | neobird主题        |
-| luci-app-mosdns              | mosdns dns offload            |DNS 国内外分流解析与广告过滤        |
-| luci-app-store               | store software repository            |  应用商店   |
-| luci-app-unblockneteasemusic | Unlock NetEase Cloud Music         | 解锁网易云音乐   |
-| luci-app-aliyundrive-webdav  | Aliyun Disk WebDAV Service            |  阿里云盘 WebDAV 服务   |
-| luci-app-amlogic  | Amlogic Service             |  晶晨宝盒   |
-* 修改argon为argonne，包括argonne-config，为防止同名argon，而影响编译
+使用lede最新源码编译失败，报错缺少依赖：
 
-![暗黄主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-9.jpg)
-![暗黄主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-10.jpg)
-![暗黄主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-11.jpg)
-![暗黑红主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-5.jpg)
-![暗黑红主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-6.jpg)
-![暗黑红主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-7.jpg)
-![暗黑红主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-8.jpg)
-![抹茶绿主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-12.jpg)
-![抹茶绿主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-13.jpg)
-![抹茶绿主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-14.jpg)
-![argon主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-1.png)
-![argon主题](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/sshot-2.png)
-![修复tomto不能修改主机名的bug](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/%E5%B0%8F%E7%8C%AA%E5%AE%B6-719.png)
-![修复tomto不能修改主机名的bug](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/%E5%B0%8F%E7%8C%AA%E5%AE%B6-722.png)
-![修复cat不能修改主机名的bug](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/%E5%B0%8F%E7%8C%AA%E5%AE%B6-720.png)
-![修复cat不能修改主机名的bug](https://raw.githubusercontent.com/kenzok8/kenzok8/main/screenshot/%E5%B0%8F%E7%8C%AA%E5%AE%B6-721.png)
+```
+satisfy_dependencies_for: Cannot satisfy the following dependencies for luci-app-vssr:
+- shadowsocksr-libev-ssr-local
+- shadowsocksr-libev-ssr-redir
+- shadowsocksr-libev-ssr-check
+- xray-core
+- xray-plugin
+- shadowsocksr-libev-ssr-server
+opkg_install_cmd: Cannot install package luci-app-vssr.
+```
 
+原因是lede缺少软件源，解决办法，清除缓存重新下载编译：
+
+```
+# 1.清除缓存
+rm -rf tmp
+
+# 2.feeds.conf文件添加源
+src-git helloworld https://github.com/fw876/helloworld
+src-git passwall https://github.com/xiaorouji/openwrt-passwall
+
+# 3.重新执行升级安装下载编译等操作
+./scripts/feeds update -a
+./scripts/feeds install -a
+make -j8 download V=s
+make -j1 V=s
+```
+
+或者也可以完全删除lede，重新git并修改feeds.conf（比较耗时）
+
+### 感谢
+
+https://github.com/coolsnowwolf/lede
+
+### 我的其它项目
+Argon theme ：https://github.com/jerrykuku/luci-theme-argon  
+京东签到插件 ：https://github.com/jerrykuku/luci-app-jd-dailybonus  
+openwrt-nanopi-r1s-h5 ： https://github.com/jerrykuku/openwrt-nanopi-r1s-h5
