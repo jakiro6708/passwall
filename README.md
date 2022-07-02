@@ -109,7 +109,13 @@ make -j1 V=s
 
 https://github.com/coolsnowwolf/lede
 
-### 我的其它项目
-Argon theme ：https://github.com/jerrykuku/luci-theme-argon  
-京东签到插件 ：https://github.com/jerrykuku/luci-app-jd-dailybonus  
-openwrt-nanopi-r1s-h5 ： https://github.com/jerrykuku/openwrt-nanopi-r1s-h5
+
+
+### Git配置
+
+git config --global user.name "Account"
+git config --global user.email "Emails"
+ssh-keygen -t rsa
+git add .
+git commit -m "$(date)" && git push
+git status
